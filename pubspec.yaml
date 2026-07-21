@@ -1,0 +1,99 @@
+name: elkhalfy
+description: Elkhalfy IPTV - تطبيق بث متكامل
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  get: ^4.6.6
+
+  # Firebase
+  firebase_core: ^3.6.0
+  firebase_database: ^11.1.0
+  firebase_messaging: ^15.1.0
+  firebase_auth: ^5.3.0
+  firebase_storage: ^12.3.0
+
+  # Video Player
+  better_player: ^0.0.84
+  media_kit: ^1.1.10+1
+  media_kit_video: ^1.2.4
+  media_kit_libs_video: ^1.0.4
+
+  # Network
+  dio: ^5.7.0
+  http: ^1.2.2
+
+  # Storage
+  shared_preferences: ^2.3.3
+  flutter_secure_storage: ^9.2.2
+  sqflite: ^2.3.3+1
+  path_provider: ^2.1.4
+
+  # Image
+  cached_network_image: ^3.4.1
+  flutter_cache_manager: ^3.4.1
+
+  # Encryption
+  encrypt: ^5.0.3
+  crypto: ^3.0.5
+
+  # UI Components
+  carousel_slider: ^5.0.0
+  shimmer: ^3.0.0
+  lottie: ^3.1.3
+  flutter_staggered_animations: ^1.1.1
+  smooth_page_indicator: ^1.2.0+3
+  flutter_rating_bar: ^4.0.1
+  percent_indicator: ^4.2.3
+
+  # Utilities
+  intl: ^0.19.0
+  url_launcher: ^6.3.0
+  package_info_plus: ^8.1.0
+  device_info_plus: ^11.1.0
+  connectivity_plus: ^6.1.0
+  permission_handler: ^11.3.1
+  open_filex: ^4.5.2
+  dio_smart_retry: ^6.0.0
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.9.4
+
+  # Icons
+  flutter_svg: ^2.0.10+1
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_background: "#0D1B3E"
+  adaptive_icon_foreground: "assets/images/logo.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 600
