@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,22 +26,31 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Set up local.properties
+        run: |
+          FLUTTER_PATH=$(which flutter)
+          FLUTTER_SDK=$(dirname $(dirname $FLUTTER_PATH))
+          echo "flutter.sdk=$FLUTTER_SDK" > android/local.properties
+          echo "sdk.dir=$ANDROID_HOME" >> android/local.properties
+          echo "flutter.versionName=1.0.0" >> android/local.properties
+          echo "flutter.versionCode=1" >> android/local.properties
+          echo "=== local.properties ==="
+          cat android/local.properties
+
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Fix media_kit gradle issue
+      - name: Fix gradle permissions
         run: |
-          # Ensure gradle wrapper is set up correctly
-          cd android
-          chmod +x gradlew || true
+          chmod +x android/gradlew || true
 
       - name: Build APK (debug)
-        run: flutter build apk --debug --no-tree-shake-icons
+        run: flutter build apk --debug --no-tree-shake-icons --verbose 2>&1 | tail -50
 
-      - name: Upload APK
+      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: elkhalfy-app-debug
+          name: elkhalfy-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
           retention-days: 30
 
@@ -52,7 +61,7 @@ jobs:
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
-          name: elkhalfy-app-release
+          name: elkhalfy-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
         continue-on-error: true
